@@ -23,4 +23,27 @@ public abstract class Request {
 
     }
 
+    public int getMethod() {
+        return method;
+    }
+
+    public void setMethod(int method) {
+        this.method = method;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public int getRetryPolicy() {
+        return retryPolicy;
+    }
+
+    public void setRetryPolicy(int retryPolicy) {
+        this.retryPolicy = retryPolicy;
+    }
 }
