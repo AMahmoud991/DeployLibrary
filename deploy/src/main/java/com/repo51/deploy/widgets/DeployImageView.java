@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import com.repo51.deploy.ImageManager.ImageDownloader;
 import com.repo51.deploy.R;
 
 /**
@@ -42,7 +43,7 @@ public class DeployImageView extends RelativeLayout {
         ProgressBar progressBar = (ProgressBar) v.findViewById(R.id.progressbar);
     }
 
-    public void loadImage(String url) {
-    //REquest Image Downloader
+    public void loadImage(String url,ImageDownloader imageDownloader) {
+
     }
 }

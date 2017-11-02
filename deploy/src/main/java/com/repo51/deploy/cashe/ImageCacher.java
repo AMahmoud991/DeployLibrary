@@ -1,4 +1,4 @@
-package com.repo51.deploy.cash;
+package com.repo51.deploy.cashe;
 
 import android.graphics.Bitmap;
 import android.util.LruCache;
