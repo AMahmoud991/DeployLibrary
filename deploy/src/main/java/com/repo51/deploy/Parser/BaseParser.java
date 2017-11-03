@@ -1,6 +1,5 @@
-package com.repo51.deploy.Parser;
+package com.repo51.deploy.parser;
 
-import java.io.BufferedInputStream;
 import java.io.InputStream;
 
 /**

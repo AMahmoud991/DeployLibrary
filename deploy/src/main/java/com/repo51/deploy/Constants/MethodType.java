@@ -1,4 +1,4 @@
-package com.repo51.deploy.Constants;
+package com.repo51.deploy.constants;
 
 public interface MethodType{
         String POST="POST";

@@ -1,15 +1,12 @@
-package com.repo51.deploy.Request;
+package com.repo51.deploy.request;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by ahmedmahmoud on 11/3/17.

@@ -1,4 +1,4 @@
-package com.repo51.deploy.Parser;
+package com.repo51.deploy.parser;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

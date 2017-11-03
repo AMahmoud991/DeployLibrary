@@ -1,13 +1,12 @@
-package com.repo51.deploy.Request;
+package com.repo51.deploy.request;
 
-import android.app.Activity;
 import android.support.v4.app.LoaderManager;
 
-import com.repo51.deploy.Constants.RequestState;
-import com.repo51.deploy.Error.DeployError;
-import com.repo51.deploy.Observer.Observable;
-import com.repo51.deploy.Observer.RequestStateObserver;
-import com.repo51.deploy.Parser.BaseParser;
+import com.repo51.deploy.constants.RequestState;
+import com.repo51.deploy.error.DeployError;
+import com.repo51.deploy.observer.Observable;
+import com.repo51.deploy.observer.RequestStateObserver;
+import com.repo51.deploy.parser.BaseParser;
 
 import java.util.ArrayList;
 import java.util.List;

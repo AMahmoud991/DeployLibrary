@@ -1,5 +1,6 @@
 package com.repo51.deploy.widgets;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.repo51.deploy.R;
 
 public class DeployImageView extends RelativeLayout {
     LayoutInflater mInflater;
+    Activity activity;
 
     public DeployImageView(Context context) {
         super(context);
@@ -43,7 +45,9 @@ public class DeployImageView extends RelativeLayout {
         ProgressBar progressBar = (ProgressBar) v.findViewById(R.id.progressbar);
     }
 
-    public void loadImage(String url,ImageDownloader imageDownloader) {
+    public void loadImage(String url,ImageDownloader imageDownloader,Activity activity) {
 
+
+        activity.getLoaderManager();
     }
 }

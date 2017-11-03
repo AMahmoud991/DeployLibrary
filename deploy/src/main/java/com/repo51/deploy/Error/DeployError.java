@@ -1,4 +1,4 @@
-package com.repo51.deploy.Error;
+package com.repo51.deploy.error;
 
 /**
  * Created by ahmedmahmoud on 11/3/17.
