@@ -1,7 +1,5 @@
 package com.repo51.deploy.ImageManager;
 
-import android.graphics.Bitmap;
-import android.util.LruCache;
 
 
 /**
