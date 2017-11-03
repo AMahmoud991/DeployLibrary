@@ -1,9 +1,13 @@
 package com.repo51.deploy.Request;
 
+import android.app.Activity;
+import android.support.v4.app.LoaderManager;
+
 import com.repo51.deploy.Constants.RequestState;
 import com.repo51.deploy.Error.DeployError;
 import com.repo51.deploy.Observer.Observable;
 import com.repo51.deploy.Observer.RequestStateObserver;
+import com.repo51.deploy.Parser.BaseParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +17,18 @@ import java.util.List;
  */
 
 public abstract class Request<T> implements Observable<T> {
-    private int method;
+    private String method;
     private String url;
+    private BaseParser<T> parser;
     private int retryPolicy;
     private List<RequestStateObserver<T>> observers = new ArrayList<>();
-
-    public Request(int method, String url, int retryPolicy) {
+    private LoaderManager loaderManager;
+    public Request(String method, String url, int retryPolicy, LoaderManager loaderManager,BaseParser parser) {
         this.method = method;
         this.url = url;
         this.retryPolicy = retryPolicy;
+        this.loaderManager=loaderManager;
+        this.parser=parser;
     }
 
     @Override
@@ -59,11 +66,11 @@ public abstract class Request<T> implements Observable<T> {
         }
     }
 
-    public int getMethod() {
+    public String getMethod() {
         return method;
     }
 
-    public void setMethod(int method) {
+    public void setMethod(String method) {
         this.method = method;
     }
 
@@ -83,5 +90,11 @@ public abstract class Request<T> implements Observable<T> {
         this.retryPolicy = retryPolicy;
     }
 
+    public BaseParser<T> getParser() {
+        return parser;
+    }
 
+    public void setParser(BaseParser<T> parser) {
+        this.parser = parser;
+    }
 }
