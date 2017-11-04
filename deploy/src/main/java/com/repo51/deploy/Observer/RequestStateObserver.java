@@ -9,7 +9,6 @@ import com.repo51.deploy.error.DeployError;
 
 public interface RequestStateObserver<T> {
 
-    void onStartLoadingRequest();
     void onSuccess(T data);
     void onError(DeployError error);
 }

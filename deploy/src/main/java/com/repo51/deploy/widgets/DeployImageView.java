@@ -2,6 +2,7 @@ package com.repo51.deploy.widgets;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,10 @@ import android.widget.RelativeLayout;
 
 import com.repo51.deploy.ImageManager.ImageDownloader;
 import com.repo51.deploy.R;
+import com.repo51.deploy.constants.MethodType;
+import com.repo51.deploy.deploy.Deploy;
+import com.repo51.deploy.request.Request;
+import com.repo51.deploy.request.RequestBuilder;
 
 /**
  * Created by ahmedmahmoud on 11/2/17.
@@ -45,9 +50,13 @@ public class DeployImageView extends RelativeLayout {
         ProgressBar progressBar = (ProgressBar) v.findViewById(R.id.progressbar);
     }
 
-    public void loadImage(String url,ImageDownloader imageDownloader,Activity activity) {
-
-
-        activity.getLoaderManager();
+    public void loadImage(String url, ImageDownloader imageDownloader, Activity activity) {
+        Request<Bitmap> request = new RequestBuilder()
+                .setUrl(url)
+                .setMethodType(MethodType.GET)
+                .setDefaultImageParser()
+                .setLoaderManager(activity.getLoaderManager())
+                .Build();
+        Deploy.getInstance().getDeployQueue().addRequest(request);
     }
 }
