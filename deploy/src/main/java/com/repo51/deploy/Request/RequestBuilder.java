@@ -1,5 +1,6 @@
 package com.repo51.deploy.request;
 
+import android.app.Activity;
 import android.app.LoaderManager;
 
 import com.repo51.deploy.parser.BaseParser;
@@ -16,7 +17,7 @@ public class RequestBuilder {
     private String method;
     private String url;
     private BaseParser parser;
-    private LoaderManager loaderManager;
+    private Activity loaderManager;
 
     public RequestBuilder setMethodType(String method){
         this.method=method;
@@ -42,7 +43,7 @@ public class RequestBuilder {
         this.parser=customParser;
         return this;
     }
-    public RequestBuilder setLoaderManager(LoaderManager loaderManager){
+    public RequestBuilder setLoaderManager(Activity loaderManager){
         this.loaderManager=loaderManager;
         return this;
     }

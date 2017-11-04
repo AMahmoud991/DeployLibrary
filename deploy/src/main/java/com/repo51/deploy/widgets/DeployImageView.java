@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.repo51.deploy.ImageManager.ImageDownloader;
 import com.repo51.deploy.R;
 import com.repo51.deploy.constants.MethodType;
 import com.repo51.deploy.deploy.Deploy;
+import com.repo51.deploy.error.DeployError;
+import com.repo51.deploy.observer.RequestStateObserver;
 import com.repo51.deploy.request.Request;
 import com.repo51.deploy.request.RequestBuilder;
 
@@ -24,6 +27,9 @@ import com.repo51.deploy.request.RequestBuilder;
 public class DeployImageView extends RelativeLayout {
     LayoutInflater mInflater;
     Activity activity;
+    View v;
+    ImageView tv;
+    ProgressBar progressBar;
 
     public DeployImageView(Context context) {
         super(context);
@@ -45,18 +51,29 @@ public class DeployImageView extends RelativeLayout {
     }
 
     public void init() {
-        View v = mInflater.inflate(R.layout.delploy_imageview, this, true);
-        ImageView tv = (ImageView) v.findViewById(R.id.imageView);
-        ProgressBar progressBar = (ProgressBar) v.findViewById(R.id.progressbar);
+         v = mInflater.inflate(R.layout.delploy_imageview, this, true);
+         tv = (ImageView) v.findViewById(R.id.imageView);
+         progressBar = (ProgressBar) v.findViewById(R.id.progressbar);
     }
 
-    public void loadImage(String url, ImageDownloader imageDownloader, Activity activity) {
+    public void loadImage(String url,  Activity activity) {
         Request<Bitmap> request = new RequestBuilder()
                 .setUrl(url)
                 .setMethodType(MethodType.GET)
                 .setDefaultImageParser()
-                .setLoaderManager(activity.getLoaderManager())
+                .setLoaderManager(activity)
                 .Build();
+        request.registerObserver(new RequestStateObserver<Bitmap>() {
+            @Override
+            public void onSuccess(Bitmap data) {
+                tv.setImageBitmap(data);
+            }
+
+            @Override
+            public void onError(DeployError error) {
+                Toast.makeText(getContext(),"",Toast.LENGTH_SHORT).show();;
+            }
+        });
         Deploy.getInstance().getDeployQueue().addRequest(request);
     }
 }

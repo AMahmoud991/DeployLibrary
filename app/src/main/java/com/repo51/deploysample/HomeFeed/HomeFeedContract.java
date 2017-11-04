@@ -1,5 +1,7 @@
 package com.repo51.deploysample.HomeFeed;
 
+import java.util.List;
+
 /**
  * Created by ahmedmahmoud on 11/4/17.
  */
@@ -7,6 +9,7 @@ package com.repo51.deploysample.HomeFeed;
 public class HomeFeedContract {
     public interface ViewCallback {
         void toggleLoadingIndicator(boolean show);
+        void notifyDataSetChanged();
 
     }
 
@@ -16,12 +19,12 @@ public class HomeFeedContract {
     }
 
     public interface PresenterCallback {
-        void onFeedDataReterived();
+        void onFeedDataReterived(List<FeedModel> feedModels);
 
     }
 
     public interface Repoistory {
-        void getFeedData();
+        void getFeedData(String url);
 
     }
 }

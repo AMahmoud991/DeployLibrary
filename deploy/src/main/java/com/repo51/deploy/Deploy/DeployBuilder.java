@@ -28,7 +28,7 @@ public class DeployBuilder {
 
     public Deploy build() {
         checkCache();
-        return new Deploy(this);
+        return Deploy.getInstance(this);
     }
 
     private void checkCache() {

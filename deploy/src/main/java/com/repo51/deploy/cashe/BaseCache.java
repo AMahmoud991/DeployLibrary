@@ -2,6 +2,8 @@ package com.repo51.deploy.cashe;
 
 import android.util.LruCache;
 
+import java.util.ArrayList;
+
 /**
  * Created by ahmedmahmoud on 11/1/17.
  */
@@ -18,17 +20,23 @@ public class BaseCache<T> implements Cache<T> {
 
     @Override
     public void initCacher() {
-
+cacheData=new LruCache<>(cachLimit);
     }
 
 
     @Override
     public T get(String key) {
+if(cacheData==null){
+    initCacher();
+}
         return cacheData.get(key);
     }
 
     @Override
     public void put(String key, T data) {
+        if(cacheData==null){
+            initCacher();
+        }
         cacheData.put(key,data);
     }
 

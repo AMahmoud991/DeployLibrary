@@ -22,6 +22,7 @@ Request<T> request;
 
     @Override
     public T loadInBackground() {
+
         return null;
     }
 
@@ -30,8 +31,9 @@ Request<T> request;
         HttpURLConnection urlConnection = null;
         try {
             URL uri = new URL(request.getUrl());
-            urlConnection.setRequestMethod(request.getMethod());
             urlConnection = (HttpURLConnection) uri.openConnection();
+
+            urlConnection.setRequestMethod(request.getMethod());
 
             int statusCode = urlConnection.getResponseCode();
             if (statusCode != 200) {
