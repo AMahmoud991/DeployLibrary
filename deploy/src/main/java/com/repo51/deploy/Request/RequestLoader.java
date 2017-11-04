@@ -34,7 +34,8 @@ Request<T> request;
             urlConnection = (HttpURLConnection) uri.openConnection();
 
             urlConnection.setRequestMethod(request.getMethod());
-
+            urlConnection.setRequestProperty("Content-Type", "application/json");
+            urlConnection.setRequestProperty("Accept", "application/json");
             int statusCode = urlConnection.getResponseCode();
             if (statusCode != 200) {
                 return null;

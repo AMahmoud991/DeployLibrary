@@ -42,6 +42,7 @@ startRequestIfNotStarted(request);
 
     private void startRequestIfNotStarted(Request request) {
       Loader loader= queueRequests.get(request.getUrl()).get(0).getLoaderManager().getLoaderManager().initLoader(atomicInteger.addAndGet(1),null,request);
+  request.setId(atomicInteger.get());
     loader.forceLoad();
     }
 

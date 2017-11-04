@@ -13,7 +13,7 @@ public class HomeFeedPresenter implements HomeFeedContract.Presenter, HomeFeedCo
     private HomeFeedRepository homeFeedRepository;
     private HomeFeedContract.ViewCallback viewCallback;
     private ArrayList<FeedModel> feedModels;
-    private String url = "https://pastebin.com/raw/wgkJgazE";
+    private String url = "https://213998c2-7c17-4e79-995c-574ab20e70d1.mock.pstmn.io/request";
 private Activity activity;
 
 

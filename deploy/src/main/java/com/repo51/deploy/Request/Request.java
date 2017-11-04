@@ -48,7 +48,7 @@ public  class Request<T> implements Observable<T>,LoaderManager.LoaderCallbacks<
     }
 
     private void cancelRequest() {
-
+loaderManager.getLoaderManager().destroyLoader(id);
     }
 
     @Override
@@ -127,5 +127,13 @@ public  class Request<T> implements Observable<T>,LoaderManager.LoaderCallbacks<
     @Override
     public void onLoaderReset(Loader<T> loader) {
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
