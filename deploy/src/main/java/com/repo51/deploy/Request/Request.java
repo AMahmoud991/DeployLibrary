@@ -1,7 +1,11 @@
 package com.repo51.deploy.request;
 
-import android.support.v4.app.LoaderManager;
+import android.app.Activity;
+import android.app.LoaderManager;
+import android.content.Loader;
+import android.os.Bundle;
 
+import com.repo51.deploy.cashe.Cache;
 import com.repo51.deploy.constants.RequestState;
 import com.repo51.deploy.error.DeployError;
 import com.repo51.deploy.observer.Observable;
@@ -15,17 +19,17 @@ import java.util.List;
  * Created by ahmedmahmoud on 11/1/17.
  */
 
-public abstract class Request<T> implements Observable<T> {
+public  class Request<T> implements Observable<T>,LoaderManager.LoaderCallbacks<T> {
+    private int id;
     private String method;
     private String url;
     private BaseParser<T> parser;
     private int retryPolicy;
     private List<RequestStateObserver<T>> observers = new ArrayList<>();
-    private LoaderManager loaderManager;
-    public Request(String method, String url, int retryPolicy, LoaderManager loaderManager,BaseParser parser) {
+    private Activity loaderManager;
+    public Request(String method, String url, Activity loaderManager,BaseParser parser) {
         this.method = method;
         this.url = url;
-        this.retryPolicy = retryPolicy;
         this.loaderManager=loaderManager;
         this.parser=parser;
     }
@@ -51,9 +55,6 @@ public abstract class Request<T> implements Observable<T> {
     public void notifyObservers(int state, T data, DeployError error) {
         for (RequestStateObserver observable : observers) {
             switch (state) {
-                case RequestState.START:
-                    observable.onStartLoadingRequest();
-                    break;
                 case RequestState.SUCCESS:
                     observable.onSuccess(data);
                     break;
@@ -95,5 +96,36 @@ public abstract class Request<T> implements Observable<T> {
 
     public void setParser(BaseParser<T> parser) {
         this.parser = parser;
+    }
+
+    public Activity getLoaderManager() {
+        return loaderManager;
+    }
+
+    public void setLoaderManager(Activity loaderManager) {
+        this.loaderManager = loaderManager;
+    }
+
+    public List<RequestStateObserver<T>> getObservers() {
+        return observers;
+    }
+
+    public void setObservers(List<RequestStateObserver<T>> observers) {
+        this.observers = observers;
+    }
+
+    @Override
+    public Loader<T> onCreateLoader(int i, Bundle bundle) {
+        return new RequestLoader(loaderManager.getBaseContext(),this);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<T> loader, T t) {
+        notifyObservers(RequestState.SUCCESS,t,null);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<T> loader) {
+
     }
 }

@@ -12,15 +12,21 @@ import java.net.URL;
  * Created by ahmedmahmoud on 11/3/17.
  */
 
-public abstract class RequestLoader<T> extends AsyncTaskLoader<T> {
+public  class RequestLoader<T> extends AsyncTaskLoader<T> {
 Request<T> request;
     public RequestLoader(Context context,Request<T> request) {
         super(context);
     this.request=request;
     }
 
+
     @Override
-    protected T onLoadInBackground() {
+    public T loadInBackground() {
+        return null;
+    }
+
+    @Override
+    public T onLoadInBackground() {
         HttpURLConnection urlConnection = null;
         try {
             URL uri = new URL(request.getUrl());
@@ -28,9 +34,9 @@ Request<T> request;
             urlConnection = (HttpURLConnection) uri.openConnection();
 
             int statusCode = urlConnection.getResponseCode();
-            /*if (statusCode != HttpStatus.SC_OK) {
+            if (statusCode != 200) {
                 return null;
-            }*/
+            }
 
             InputStream inputStream = urlConnection.getInputStream();
 
