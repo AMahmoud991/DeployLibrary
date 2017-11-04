@@ -36,7 +36,8 @@ private Activity activity;
         request.registerObserver(new RequestStateObserver<JSONArray>() {
             @Override
             public void onSuccess(JSONArray data) {
-                presenterCallback.onFeedDataReterived(parse(data));
+             if(data!=null){
+                presenterCallback.onFeedDataReterived(parse(data));}
             }
 
             @Override
@@ -48,6 +49,7 @@ private Activity activity;
     }
 
     private List<FeedModel> parse(JSONArray data) {
+
         List<FeedModel> feedModels=new ArrayList<>();
         for(int i=start;i<data.length();i++) {
             try {

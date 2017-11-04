@@ -21,9 +21,10 @@ public class JsonObjectParser implements BaseParser<JSONObject> {
 
         String inputStr;
         try {
-            while ((inputStr = bufferedReader.readLine()) != null)
-                responseStrBuilder.append(inputStr);
-            new JSONObject(responseStrBuilder.toString());
+            while ((inputStr = bufferedReader.readLine()) != null){
+                responseStrBuilder.append(inputStr);}
+            inputStream.close();
+            return    new JSONObject(responseStrBuilder.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {

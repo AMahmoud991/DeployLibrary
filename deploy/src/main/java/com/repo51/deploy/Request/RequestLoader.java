@@ -3,8 +3,11 @@ package com.repo51.deploy.request;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -32,14 +35,15 @@ Request<T> request;
         try {
             URL uri = new URL(request.getUrl());
             urlConnection = (HttpURLConnection) uri.openConnection();
+            urlConnection.setReadTimeout(15000 /* milliseconds */);
+            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setRequestMethod("GET");
 
-            urlConnection.setRequestMethod(request.getMethod());
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-            urlConnection.setRequestProperty("Accept", "application/json");
             int statusCode = urlConnection.getResponseCode();
             if (statusCode != 200) {
                 return null;
             }
+
 
             InputStream inputStream = urlConnection.getInputStream();
 

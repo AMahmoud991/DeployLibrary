@@ -16,14 +16,16 @@ public class JsonArrayParser implements BaseParser<JSONArray> {
 
     @Override
     public JSONArray parse(InputStream inputStream) {
+
         StringBuilder responseStrBuilder = new StringBuilder();
         BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
 
         String inputStr;
         try {
-            while ((inputStr = bufferedReader.readLine()) != null)
-                responseStrBuilder.append(inputStr);
-            new JSONArray(responseStrBuilder.toString());
+            while ((inputStr = bufferedReader.readLine()) != null){
+                responseStrBuilder.append(inputStr);}
+            inputStream.close();
+            return   new JSONArray(responseStrBuilder.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {
