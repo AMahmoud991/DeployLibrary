@@ -1,6 +1,7 @@
 package com.repo51.deploysample.HomeFeed;
 
 import android.app.Activity;
+import android.graphics.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +41,22 @@ private Activity activity;
 
     @Override
     public void onFeedDataReterived(List<FeedModel> feedModelList) {
+        prepareForTheView(feedModelList);
         feedModels.addAll(feedModelList);
         viewCallback.toggleLoadingIndicator(false);
         viewCallback.notifyDataSetChanged();
+    }
+
+    private void prepareForTheView(List<FeedModel> feedModelList) {
+     for(FeedModel feedModel:feedModelList){
+feedModel.setTextColor(getNegativePaintType(feedModel.getColor()));
+     }
+
+    }
+    private String  getNegativePaintType(String hexa) {
+        //hexa = "#28cb43";
+        int color = Color.parseColor(hexa);
+        color=(color & 0xFF000000) | (~color & 0x00FFFFFF);
+        return String.format("#%06X", (0xFFFFFF & color));
     }
 }

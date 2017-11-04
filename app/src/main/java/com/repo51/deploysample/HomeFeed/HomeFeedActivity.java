@@ -28,6 +28,8 @@ public class HomeFeedActivity extends AppCompatActivity implements HomeFeedContr
     RecyclerView imagesRecycleView;
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     private HomeFeedPresenter homeFeedPresenter;
     private FeedAdapter feedAdapter;
     @Override
@@ -35,8 +37,10 @@ public class HomeFeedActivity extends AppCompatActivity implements HomeFeedContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         initPresenter();
+
+        setSupportActionBar(toolbar);
+getSupportActionBar().setTitle(getString(R.string.feed));
 
         imagesRecycleView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         SpacesItemDecoration decoration = new SpacesItemDecoration(16);

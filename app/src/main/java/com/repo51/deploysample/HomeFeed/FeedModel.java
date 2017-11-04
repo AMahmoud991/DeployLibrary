@@ -9,9 +9,18 @@ public class FeedModel {
     private int width;
     private int height;
     private String color;
+    private String textColor;
     private int likes;
     private boolean liked_by_user = false;
     private UserModel userModel;
+
+    public String getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(String textColor) {
+        this.textColor = textColor;
+    }
 
     public String getId() {
         return id;
