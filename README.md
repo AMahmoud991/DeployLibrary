@@ -1,16 +1,21 @@
 # DeployLibrary
-   Deploy is a Proof of concpet  Networking library using AsynkTaskLaoders. 
+  Deploy is a Proof of concept  Networking library using AsynkTaskLaoders.
 # Download
  it wil be avalaible soon on maven
 # Usage
  Step 1 requried
+
  In the Application Class 
+
             new DeployBuilder().build();
- #Load Image           
- First Way to Load DeployImageView Widget
-         DeployImageView userImage;
+
+ #Load Image
+
+ First Way to Load image use  DeployImageView Widget
+
+             DeployImageView userImage;
          userImage.loadImage(url, activity);
-#Or
+        #Or
 ImageView userImage;
 Request<Bitmap> request = new RequestBuilder()
                 .setUrl(url)

@@ -119,7 +119,13 @@ public  class Request<T> implements Observable<T>,LoaderManager.LoaderCallbacks<
     @Override
     public void onLoadFinished(Loader<T> loader, T t) {
         Deploy.getInstance().getRequestCache().put(url,t);
-        notifyObservers(RequestState.SUCCESS,t,null);
+        if(t!=null){
+        notifyObservers(RequestState.SUCCESS,t,null);}else {
+            DeployError deployError=new DeployError();
+            deployError.setErrorCode(RequestState.FAIL);
+            deployError.setErrorMsg("Null Response");
+            notifyObservers(RequestState.FAIL,t,deployError);
+        }
     }
 
     @Override

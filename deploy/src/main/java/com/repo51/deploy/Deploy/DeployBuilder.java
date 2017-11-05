@@ -31,7 +31,7 @@ public class DeployBuilder {
     private void checkCache() {
 
         if (requestCache == null) {
-            requestCache = new BaseCache<String>();
+            requestCache = new BaseCache<>();
         }
     }
 
