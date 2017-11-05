@@ -5,6 +5,7 @@ import android.content.Loader;
 import android.graphics.Bitmap;
 
 import com.repo51.deploy.constants.RequestState;
+import com.repo51.deploy.observer.RequestStateObserver;
 import com.repo51.deploy.request.Request;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DeployQueue {
     private static DeployQueue instance;
     private AtomicInteger atomicInteger=new AtomicInteger();
-    private HashMap<String,List<Request>> queueRequests;
+    private HashMap<String,Request> queueRequests;
     private DeployQueue(){
         queueRequests= new HashMap<>();
     }
@@ -36,23 +37,22 @@ public class DeployQueue {
        if(!checkIfInCache(request)){
            addToRequestQueue(request);
        }
-startRequestIfNotStarted(request);
       //  queueRequests.add(request);
     }
 
     private void startRequestIfNotStarted(Request request) {
-      Loader loader= queueRequests.get(request.getUrl()).get(0).getLoaderManager().getLoaderManager().initLoader(atomicInteger.addAndGet(1),null,request);
+      Loader loader= queueRequests.get(request.getUrl()).getLoaderManager().getLoaderManager().initLoader(atomicInteger.addAndGet(1),null,request);
   request.setId(atomicInteger.get());
     loader.forceLoad();
     }
 
     private void addToRequestQueue(Request request) {
         if(queueRequests.get(request.getUrl())==null){
-            List<Request> requests=new ArrayList<>();
-            requests.add(request);
-            queueRequests.put(request.getUrl(),requests);
+            queueRequests.put(request.getUrl(),request);
+            startRequestIfNotStarted(request);
+
         }else{
-            queueRequests.get(request.getUrl()).add(request);
+            queueRequests.get(request.getUrl()).registerObserver((RequestStateObserver) request.getObservers().get(0));
         }
     }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.repo51.deploy.cashe.Cache;
 import com.repo51.deploy.constants.RequestState;
+import com.repo51.deploy.deploy.Deploy;
 import com.repo51.deploy.error.DeployError;
 import com.repo51.deploy.observer.Observable;
 import com.repo51.deploy.observer.RequestStateObserver;
@@ -121,6 +122,7 @@ loaderManager.getLoaderManager().destroyLoader(id);
 
     @Override
     public void onLoadFinished(Loader<T> loader, T t) {
+        Deploy.getInstance().getRequestCache().put(url,t);
         notifyObservers(RequestState.SUCCESS,t,null);
     }
 
