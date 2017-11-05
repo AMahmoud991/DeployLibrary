@@ -14,9 +14,12 @@
  First Way to Load image use  DeployImageView Widget
 
              DeployImageView userImage;
-         userImage.loadImage(url, activity);
-        #Or
-ImageView userImage;
+             userImage.loadImage(url, activity);
+
+  # OR
+
+  You can use normal get Request and to retrive bitmap and assgin it to image view
+
 Request<Bitmap> request = new RequestBuilder()
                 .setUrl(url)
                 .setMethodType(MethodType.GET)
@@ -37,9 +40,12 @@ Request<Bitmap> request = new RequestBuilder()
             }
         });
         Deploy.getInstance().getDeployQueue().addRequest(request);
-        
-#Load Request
- Request<JSONArray> request = new RequestBuilder().setUrl(url).setMethodType(MethodType.GET).setDefaultJsonArrayParser().setLoaderManager(activity).Build();
+
+
+# Load Request
+ The Library Have 3 template parsers JsonArray Parser, JsonObject Parser and Bitmap Parser
+
+        Request<JSONArray> request = new RequestBuilder().setUrl(url).setMethodType(MethodType.GET).setDefaultJsonArrayParser().setLoaderManager(activity).Build();
         request.registerObserver(new RequestStateObserver<JSONArray>() {
             @Override
             public void onSuccess(JSONArray data) {
@@ -51,9 +57,10 @@ Request<Bitmap> request = new RequestBuilder()
 
             }
         });
-        Deploy.getInstance().getDeployQueue().addRequest(request);       
- #Make Custom Request
- you can Implment BasicPArser and send it to the request 
+        Deploy.getInstance().getDeployQueue().addRequest(request);
+
+ # Make Custom Request
+ you can Implement BasicParser and send it to the request
  
         
         
