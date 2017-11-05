@@ -86,10 +86,12 @@
 
   You have the option to cancel Request by calling the cancel method in Deploy Queue
 
-          Deploy.getInstance().getDeployQueue().cancelRequest(request);
+              Deploy.getInstance().getDeployQueue().cancelRequest(request);
 
-   --------------------------------------------------------------------------------------
-    # Sample App
+
+--------------------------------------------------------------------------------------
+  # Sample App
+
 
      The repository include  asample app to demonstrate the basic functions  of Deploy Libs
 
