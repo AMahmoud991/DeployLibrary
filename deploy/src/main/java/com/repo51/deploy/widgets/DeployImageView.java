@@ -74,7 +74,6 @@ public class DeployImageView extends RelativeLayout {
             public void onError(DeployError error) {
                 progressBar.setVisibility(GONE);
 
-                Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
 
             }
         });

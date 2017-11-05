@@ -24,6 +24,7 @@ void imageLoaded(Bitmap data);
     public interface PresenterCallback {
         void onUserImageLoaded(Bitmap data);
 
+        void onLoadFailed();
     }
 
     public interface Repoistory {

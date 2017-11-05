@@ -28,7 +28,6 @@ import java.util.List;
 public class UserDetailsRepository implements UserDetailsContract.Repoistory {
     private UserDetailsContract.PresenterCallback presenterCallback;
     private Activity activity;
-    private int start = 0;
 
     public UserDetailsRepository(UserDetailsContract.PresenterCallback presenterCallback, Activity activity) {
         this.presenterCallback = presenterCallback;
@@ -52,7 +51,7 @@ public class UserDetailsRepository implements UserDetailsContract.Repoistory {
 
             @Override
             public void onError(DeployError error) {
-
+presenterCallback.onLoadFailed();
 
             }
         });

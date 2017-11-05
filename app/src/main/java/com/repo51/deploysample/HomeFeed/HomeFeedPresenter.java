@@ -55,6 +55,12 @@ public class HomeFeedPresenter implements HomeFeedContract.Presenter, HomeFeedCo
         homeFeedRepository.getFeedData(url);
     }
 
+    @Override
+    public void onLoadFiled() {
+        viewCallback.toggleLoadingIndicator(true);
+
+    }
+
     private void prepareForTheView(List<FeedModel> feedModelList) {
      for(FeedModel feedModel:feedModelList){
 feedModel.setTextColor(getNegativePaintType(feedModel.getColor()));

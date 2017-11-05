@@ -41,7 +41,7 @@ public class HomeFeedRepository implements HomeFeedContract.Repoistory {
 
             @Override
             public void onError(DeployError error) {
-
+presenterCallback.onLoadFiled();
             }
         });
         Deploy.getInstance().getDeployQueue().addRequest(request);

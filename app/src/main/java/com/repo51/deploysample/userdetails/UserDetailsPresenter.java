@@ -27,4 +27,9 @@ public class UserDetailsPresenter implements UserDetailsContract.Presenter, User
     public void onUserImageLoaded(Bitmap data) {
         viewCallback.imageLoaded(data);
     }
+
+    @Override
+    public void onLoadFailed() {
+
+    }
 }

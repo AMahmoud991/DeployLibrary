@@ -22,6 +22,8 @@ public class HomeFeedContract {
         void onFeedDataReterived(List<FeedModel> feedModels);
 
         void firstLoad();
+
+        void onLoadFiled();
     }
 
     public interface Repoistory {
