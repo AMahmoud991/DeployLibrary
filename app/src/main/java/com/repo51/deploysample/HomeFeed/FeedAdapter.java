@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.repo51.deploy.widgets.DeployImageView;
@@ -21,7 +22,7 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private List<FeedModel> feedModels;
     private Activity activity;
-
+private ItemCLickListener itemCLickListener;
     public FeedAdapter(Context context, List<FeedModel> feedModels) {
         this.context = context;
         this.feedModels = feedModels;
@@ -35,13 +36,21 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        FeedModel feedModel = feedModels.get(position);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        final FeedModel feedModel = feedModels.get(position);
         FeedViewHolder feedViewHolder= (FeedViewHolder) holder;
         feedViewHolder.userImage.loadImage(feedModel.getUserModel().getProfileIamge(), activity);
         feedViewHolder.userName.setBackgroundColor(Color.parseColor(feedModel.getColor()));
         feedViewHolder.userName.setTextColor(Color.parseColor(feedModel.getTextColor()));
         feedViewHolder.userName.setText(feedModel.getUserModel().getUserName());
+        feedViewHolder.containerLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(itemCLickListener!=null){
+                    itemCLickListener.onItemCLickListener(position,feedModel);
+                }
+            }
+        });
     }
 
 
@@ -50,15 +59,23 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return feedModels.size();
     }
 
+    public void setItemCLickListener(ItemCLickListener itemCLickListener) {
+        this.itemCLickListener = itemCLickListener;
+    }
+
     private class FeedViewHolder extends RecyclerView.ViewHolder {
 
         DeployImageView userImage;
         TextView userName;
-
+        RelativeLayout containerLayout;
         public FeedViewHolder(View itemView) {
             super(itemView);
+            this.containerLayout=itemView.findViewById(R.id.continer_layout);
             userImage = (DeployImageView) itemView.findViewById(R.id.userImage);
             userName = (TextView) itemView.findViewById(R.id.userName);
         }
+    }
+    public interface ItemCLickListener{
+        void onItemCLickListener(int pos,FeedModel feedModel);
     }
 }

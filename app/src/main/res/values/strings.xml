@@ -2,4 +2,6 @@
     <string name="app_name">DeploySample</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="feed">Feed</string>
+    <string name="title_activity_user_details">UserDetails</string>
+    <string name="fav">Fav</string>
 </resources>

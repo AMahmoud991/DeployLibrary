@@ -1,5 +1,6 @@
 package com.repo51.deploysample.HomeFeed;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -9,12 +10,13 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.repo51.deploysample.R;
+import com.repo51.deploysample.userdetails.UserDetailsActivity;
 import com.repo51.deploysample.utils.SpacesItemDecoration;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeFeedActivity extends AppCompatActivity implements HomeFeedContract.ViewCallback{
+public class HomeFeedActivity extends AppCompatActivity implements HomeFeedContract.ViewCallback, FeedAdapter.ItemCLickListener {
 
 
     @BindView(R.id.imagesRecyclerView)
@@ -39,6 +41,7 @@ getSupportActionBar().setTitle(getString(R.string.feed));
         SpacesItemDecoration decoration = new SpacesItemDecoration(16);
         imagesRecycleView.addItemDecoration(decoration);
         feedAdapter=new FeedAdapter(this,homeFeedPresenter.getFeedModels());
+        feedAdapter.setItemCLickListener(this);
         imagesRecycleView.setAdapter(feedAdapter);
         homeFeedPresenter.loadFeedData();
 
@@ -64,5 +67,12 @@ progressBar.setVisibility(View.VISIBLE);}else {
     @Override
     public void notifyDataSetChanged() {
         feedAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemCLickListener(int pos, FeedModel feedModel) {
+        Intent userDetailsIntent=new Intent(this, UserDetailsActivity.class);
+        userDetailsIntent.putExtra(UserDetailsActivity.FEED_MODEL_EXTRA,feedModel);
+        startActivity(userDetailsIntent);
     }
 }
