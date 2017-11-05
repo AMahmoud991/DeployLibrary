@@ -1,6 +1,5 @@
 package com.repo51.deploy.deploy;
 
-import com.repo51.deploy.ImageManager.ImageDownloader;
 import com.repo51.deploy.cashe.BaseCache;
 
 /**
@@ -10,12 +9,10 @@ import com.repo51.deploy.cashe.BaseCache;
 public class Deploy {
     private static Deploy instance;
     private DeployQueue deployQueue;
-    private ImageDownloader imageDownloader;
     private BaseCache requestCache;
 
     public Deploy(DeployBuilder deployBuilder) {
         this.deployQueue = deployBuilder.getDeployQueue();
-        this.imageDownloader = deployBuilder.getImageDownloader();
         this.requestCache = deployBuilder.getRequestCache();
 
     }
@@ -44,9 +41,6 @@ public class Deploy {
     }
 
 
-    public ImageDownloader getImageDownloader() {
-        return imageDownloader;
-    }
 
 
 

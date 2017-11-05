@@ -1,4 +1,4 @@
-package com.repo51.deploysample.Utils;
+package com.repo51.deploysample.utils;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

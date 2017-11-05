@@ -1,4 +1,4 @@
-package com.repo51.deploysample.App;
+package com.repo51.deploysample.app;
 
 import com.repo51.deploy.deploy.DeployBuilder;
 

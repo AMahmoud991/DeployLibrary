@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.repo51.deploy.ImageManager.ImageDownloader;
 import com.repo51.deploy.R;
 import com.repo51.deploy.constants.MethodType;
 import com.repo51.deploy.deploy.Deploy;
@@ -66,15 +65,21 @@ public class DeployImageView extends RelativeLayout {
         request.registerObserver(new RequestStateObserver<Bitmap>() {
             @Override
             public void onSuccess(Bitmap data) {
+                progressBar.setVisibility(GONE);
+
                 tv.setImageBitmap(data);
             }
 
             @Override
             public void onError(DeployError error) {
+                progressBar.setVisibility(GONE);
+
                 Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
-                ;
+
             }
         });
+        progressBar.setVisibility(VISIBLE);
         Deploy.getInstance().getDeployQueue().addRequest(request);
+
     }
 }

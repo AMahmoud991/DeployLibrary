@@ -2,7 +2,6 @@ package com.repo51.deploy.deploy;
 
 import android.graphics.Bitmap;
 
-import com.repo51.deploy.ImageManager.ImageDownloader;
 import com.repo51.deploy.cashe.BaseCache;
 
 /**
@@ -11,12 +10,10 @@ import com.repo51.deploy.cashe.BaseCache;
 
 public class DeployBuilder {
     private DeployQueue deployQueue;
-    private ImageDownloader imageDownloader;
     private BaseCache requestCache;
 
     public DeployBuilder() {
         this.deployQueue = DeployQueue.getInstance();
-        this.imageDownloader = ImageDownloader.getInstance();
     }
 
 
@@ -42,9 +39,6 @@ public class DeployBuilder {
         return deployQueue;
     }
 
-    public ImageDownloader getImageDownloader() {
-        return imageDownloader;
-    }
 
 
 
