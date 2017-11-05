@@ -20,11 +20,16 @@
 
   You can use normal get Request and to retrive bitmap and assgin it to image view
 
-Request<Bitmap> request = new RequestBuilder()
+        Request<Bitmap> request = new RequestBuilder()
+
                 .setUrl(url)
+
                 .setMethodType(MethodType.GET)
+
                 .setDefaultImageParser()
+
                 .setLoaderManager(activity)
+
                 .Build();
         request.registerObserver(new RequestStateObserver<Bitmap>() {
             @Override
