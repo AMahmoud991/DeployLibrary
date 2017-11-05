@@ -1,5 +1,5 @@
 # DeployLibrary
-   Deploy is a Proof of concpet of Networking library using AsynkTaskLaoders. 
+   Deploy is a Proof of concpet  Networking library using AsynkTaskLaoders. 
 # Download
  it wil be avalaible soon on maven
 # Usage
