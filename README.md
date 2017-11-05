@@ -3,11 +3,15 @@
 # Download
  it wil be avalaible soon on maven
 # Usage
- Step 1 requried
 
+# Init
  In the Application Class 
 
             new DeployBuilder().build();
+
+# Custom Cache
+
+             new DeployBuilder().requestCache(new BaseCache(cachLimit)).build();
 
  #Load Image
 
@@ -75,6 +79,7 @@
         }
     }
         Request<PDF> request = new RequestBuilder().setUrl(url).setMethodType(MethodType.GET).setCustomParser(new PdfParser()).setLoaderManager(activity).Build();
+
 
 
  # Cancel Request
