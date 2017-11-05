@@ -65,7 +65,22 @@
         Deploy.getInstance().getDeployQueue().addRequest(request);
 
  # Make Custom Request
+
  you can Implement BasicParser and send it to the request
+
+    public class PdfParser implements BaseParser<PDF> {
+        @Override
+        public Bitmap  parse(InputStream inputStream) {
+    // Parser inputstream into pdf
+        }
+    }
+
+ # Cancel Request
+
+  You have the option to cancel Request by calling the cnacel method in Deploy Queue
+
+          Deploy.getInstance().getDeployQueue().addRequest(request);
+
  
         
         
