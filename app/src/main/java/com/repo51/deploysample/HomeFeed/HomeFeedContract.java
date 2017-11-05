@@ -21,10 +21,12 @@ public class HomeFeedContract {
     public interface PresenterCallback {
         void onFeedDataReterived(List<FeedModel> feedModels);
 
+        void firstLoad();
     }
 
     public interface Repoistory {
         void getFeedData(String url);
 
+        void resetStart();
     }
 }

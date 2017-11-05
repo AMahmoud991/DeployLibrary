@@ -47,12 +47,17 @@ public class HomeFeedRepository implements HomeFeedContract.Repoistory {
         Deploy.getInstance().getDeployQueue().addRequest(request);
     }
 
+    @Override
+    public void resetStart() {
+        start=0;
+    }
+
     private List<FeedModel> parse(JSONArray data) {
 
         List<FeedModel> feedModels = new ArrayList<>();
         int newBegin=0;
 //To Simulate Paging as the provided api dosn't provide one
-        for (int i = start; i < data.length()&&(i-start)<10; i++) {
+        for (int i = start; i < data.length()&&(i-start)<6; i++) {
             try {
                 FeedModel feedModel = new FeedModel();
                 JSONObject jsonObject = data.getJSONObject(i);

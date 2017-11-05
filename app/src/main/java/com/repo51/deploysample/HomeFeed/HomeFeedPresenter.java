@@ -15,7 +15,7 @@ public class HomeFeedPresenter implements HomeFeedContract.Presenter, HomeFeedCo
     private HomeFeedContract.ViewCallback viewCallback;
     private ArrayList<FeedModel> feedModels;
     private String url = "https://213998c2-7c17-4e79-995c-574ab20e70d1.mock.pstmn.io/request";
-private Activity activity;
+    private Activity activity;
 
 
     public ArrayList<FeedModel> getFeedModels() {
@@ -45,6 +45,14 @@ private Activity activity;
         feedModels.addAll(feedModelList);
         viewCallback.toggleLoadingIndicator(false);
         viewCallback.notifyDataSetChanged();
+    }
+
+    @Override
+    public void firstLoad() {
+        feedModels.clear();
+        viewCallback.toggleLoadingIndicator(true);
+        homeFeedRepository.resetStart();
+        homeFeedRepository.getFeedData(url);
     }
 
     private void prepareForTheView(List<FeedModel> feedModelList) {
