@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 
 import com.repo51.deploysample.R;
 import com.repo51.deploysample.userdetails.UserDetailsActivity;
-import com.repo51.deploysample.utils.SpacesItemDecoration;
+import com.repo51.deploysample.utilsmanagers.SpacesItemDecoration;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
