@@ -74,14 +74,36 @@
     // Parser inputstream into pdf
         }
     }
+        Request<PDF> request = new RequestBuilder().setUrl(url).setMethodType(MethodType.GET).setCustomParser(new PdfParser()).setLoaderManager(activity).Build();
+
 
  # Cancel Request
 
-  You have the option to cancel Request by calling the cnacel method in Deploy Queue
+  You have the option to cancel Request by calling the cancel method in Deploy Queue
 
-          Deploy.getInstance().getDeployQueue().addRequest(request);
+          Deploy.getInstance().getDeployQueue().cancelRequest(request);
 
- 
+   --------------------------------------------------------------------------------------
+    # Sample App
+
+     The repository include  asample app to demonstrate the basic functions  of Deploy Libs
+
+     and Some Material Component
+            *   FloatingActionbutton
+            *   Coordinator Layout
+            *   Ripple Effect
+            *   SnackBar
+            *   CardView
+            *   RecyclerView
+     ---------------------------------------------------------------------------------------
+
+     # FutureWork
+
+        * Add Support for Post Request
+        * Add UnitTesting
+
+
+
         
         
 
