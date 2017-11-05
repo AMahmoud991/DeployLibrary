@@ -1,5 +1,6 @@
 package com.repo51.deploysample.app;
 
+import com.repo51.deploy.cashe.BaseCache;
 import com.repo51.deploy.deploy.DeployBuilder;
 
 /**
