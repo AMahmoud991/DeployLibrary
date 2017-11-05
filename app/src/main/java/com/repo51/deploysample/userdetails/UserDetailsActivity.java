@@ -49,6 +49,7 @@ CoordinatorLayout userDetailsContainer;
         feedModel = (FeedModel) getIntent().getParcelableExtra(FEED_MODEL_EXTRA);
         initPresenter();
         userDetailsPresenter.loadUserIamge(feedModel.getUserModel().getProfileIamge());
+        setTitle(feedModel.getUserModel().getUserName());
 
     }
 

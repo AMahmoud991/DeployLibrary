@@ -3,6 +3,7 @@ package com.repo51.deploysample.HomeFeed;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ private ItemCLickListener itemCLickListener;
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final FeedModel feedModel = feedModels.get(position);
-        FeedViewHolder feedViewHolder= (FeedViewHolder) holder;
+        final FeedViewHolder feedViewHolder= (FeedViewHolder) holder;
         feedViewHolder.userImage.loadImage(feedModel.getUserModel().getProfileIamge(), activity);
         feedViewHolder.userName.setBackgroundColor(Color.parseColor(feedModel.getColor()));
         feedViewHolder.userName.setTextColor(Color.parseColor(feedModel.getTextColor()));
@@ -47,7 +48,7 @@ private ItemCLickListener itemCLickListener;
             @Override
             public void onClick(View view) {
                 if(itemCLickListener!=null){
-                    itemCLickListener.onItemCLickListener(position,feedModel);
+                    itemCLickListener.onItemCLickListener(position,feedModel,feedViewHolder.userImage.findViewById(R.id.imageView));
                 }
             }
         });
@@ -76,6 +77,6 @@ private ItemCLickListener itemCLickListener;
         }
     }
     public interface ItemCLickListener{
-        void onItemCLickListener(int pos,FeedModel feedModel);
+        void onItemCLickListener(int pos, FeedModel feedModel, View view);
     }
 }

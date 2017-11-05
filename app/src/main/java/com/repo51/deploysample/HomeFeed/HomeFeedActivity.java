@@ -1,7 +1,9 @@
 package com.repo51.deploysample.HomeFeed;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -70,9 +72,17 @@ progressBar.setVisibility(View.VISIBLE);}else {
     }
 
     @Override
-    public void onItemCLickListener(int pos, FeedModel feedModel) {
-        Intent userDetailsIntent=new Intent(this, UserDetailsActivity.class);
+    public void onItemCLickListener(int pos, FeedModel feedModel,View view) {
+        Intent userDetailsIntent = new Intent(this, UserDetailsActivity.class);
         userDetailsIntent.putExtra(UserDetailsActivity.FEED_MODEL_EXTRA,feedModel);
-        startActivity(userDetailsIntent);
+
+        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(this,view,getString(R.string.commen_view));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            startActivity(userDetailsIntent, activityOptionsCompat.toBundle());
+        else
+            startActivity(userDetailsIntent);
+
+
     }
 }

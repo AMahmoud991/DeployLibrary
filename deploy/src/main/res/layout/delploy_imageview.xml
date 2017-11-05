@@ -5,6 +5,7 @@
     android:id="@+id/imageView"
     android:layout_width="match_parent"
     android:adjustViewBounds="true"
+    android:transitionName="commen_view"
     android:scaleType="centerCrop"
     android:layout_height="wrap_content" />
     <ProgressBar
