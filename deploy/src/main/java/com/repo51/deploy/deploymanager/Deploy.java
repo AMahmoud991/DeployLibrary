@@ -1,4 +1,4 @@
-package com.repo51.deploy.deploy;
+package com.repo51.deploy.deploymanager;
 
 import com.repo51.deploy.cashe.BaseCache;
 

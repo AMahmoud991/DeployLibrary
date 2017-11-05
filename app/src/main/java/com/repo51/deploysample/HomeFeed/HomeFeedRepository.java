@@ -3,7 +3,7 @@ package com.repo51.deploysample.HomeFeed;
 import android.app.Activity;
 
 import com.repo51.deploy.constants.MethodType;
-import com.repo51.deploy.deploy.Deploy;
+import com.repo51.deploy.deploymanager.Deploy;
 import com.repo51.deploy.error.DeployError;
 import com.repo51.deploy.observer.RequestStateObserver;
 import com.repo51.deploy.request.Request;

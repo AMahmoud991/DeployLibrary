@@ -1,6 +1,4 @@
-package com.repo51.deploy.deploy;
-
-import android.graphics.Bitmap;
+package com.repo51.deploy.deploymanager;
 
 import com.repo51.deploy.cashe.BaseCache;
 

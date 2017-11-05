@@ -1,17 +1,13 @@
-package com.repo51.deploy.deploy;
+package com.repo51.deploy.deploymanager;
 
 
 import android.content.Loader;
-import android.graphics.Bitmap;
 
 import com.repo51.deploy.constants.RequestState;
 import com.repo51.deploy.observer.RequestStateObserver;
 import com.repo51.deploy.request.Request;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Queue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
