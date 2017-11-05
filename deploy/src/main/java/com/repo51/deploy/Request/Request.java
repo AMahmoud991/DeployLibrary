@@ -43,18 +43,14 @@ public  class Request<T> implements Observable<T>,LoaderManager.LoaderCallbacks<
     @Override
     public void removeObserver(RequestStateObserver<T> requestStateObserver) {
         observers.remove(requestStateObserver);
-        if (observers.size() == 0) {
-            cancelRequest();
-        }
+
     }
 
-    private void cancelRequest() {
-loaderManager.getLoaderManager().destroyLoader(id);
-    }
 
     @Override
     public void notifyObservers(int state, T data, DeployError error) {
         for (RequestStateObserver observable : observers) {
+
             switch (state) {
                 case RequestState.SUCCESS:
                     observable.onSuccess(data);

@@ -64,4 +64,16 @@ public class DeployQueue {
         return true;
         }
     }
+
+    public void cancelRequest(Request request) {
+        Request currentRequest=queueRequests.get(request.getUrl());
+        if(currentRequest!=null){
+            currentRequest.removeObserver((RequestStateObserver) request.getObservers().get(0));
+            if(currentRequest.getObservers().size()==0){
+                currentRequest.getLoaderManager().getLoaderManager().destroyLoader(currentRequest.getId());
+                queueRequests.remove(request.getUrl());
+            }
+        }
+
+    }
 }

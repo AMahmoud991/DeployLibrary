@@ -71,7 +71,8 @@ public class DeployImageView extends RelativeLayout {
 
             @Override
             public void onError(DeployError error) {
-                Toast.makeText(getContext(),"",Toast.LENGTH_SHORT).show();;
+                Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+                ;
             }
         });
         Deploy.getInstance().getDeployQueue().addRequest(request);
