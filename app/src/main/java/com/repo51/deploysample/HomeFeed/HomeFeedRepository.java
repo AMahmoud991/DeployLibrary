@@ -2,7 +2,6 @@ package com.repo51.deploysample.HomeFeed;
 
 import android.app.Activity;
 
-import com.google.gson.Gson;
 import com.repo51.deploy.constants.MethodType;
 import com.repo51.deploy.deploy.Deploy;
 import com.repo51.deploy.error.DeployError;
@@ -23,21 +22,21 @@ import java.util.List;
 
 public class HomeFeedRepository implements HomeFeedContract.Repoistory {
     private HomeFeedContract.PresenterCallback presenterCallback;
-private Activity activity;
-    private int start=0;
+    private Activity activity;
+    private int start = 0;
+
     public HomeFeedRepository(HomeFeedContract.PresenterCallback presenterCallback, Activity activity) {
         this.presenterCallback = presenterCallback;
-        this.activity =activity;
+        this.activity = activity;
     }
 
     @Override
     public void getFeedData(String url) {
-        Request<JSONArray> request= new RequestBuilder().setUrl(url).setMethodType(MethodType.GET).setDefaultJsonArrayParser().setLoaderManager(activity).Build();
+        Request<JSONArray> request = new RequestBuilder().setUrl(url).setMethodType(MethodType.GET).setDefaultJsonArrayParser().setLoaderManager(activity).Build();
         request.registerObserver(new RequestStateObserver<JSONArray>() {
             @Override
             public void onSuccess(JSONArray data) {
-             if(data!=null){
-                presenterCallback.onFeedDataReterived(parse(data));}
+                presenterCallback.onFeedDataReterived(parse(data));
             }
 
             @Override
@@ -50,28 +49,31 @@ private Activity activity;
 
     private List<FeedModel> parse(JSONArray data) {
 
-        List<FeedModel> feedModels=new ArrayList<>();
-        for(int i=start;i<data.length();i++) {
+        List<FeedModel> feedModels = new ArrayList<>();
+        int newBegin=0;
+//To Simulate Paging as the provided api dosn't provide one
+        for (int i = start; i < data.length()&&(i-start)<10; i++) {
             try {
-            FeedModel feedModel= new FeedModel();
-            JSONObject jsonObject=data.getJSONObject(i);
-            feedModel.setId(jsonObject.getString("id"));
-            feedModel.setColor(jsonObject.getString("color"));
-            feedModel.setLikes(jsonObject.getInt("likes"));
-            feedModel.setLiked_by_user(jsonObject.getBoolean("liked_by_user"));
-                UserModel userModel=new UserModel();
-                JSONObject userJsonObject=jsonObject.getJSONObject("user");
+                FeedModel feedModel = new FeedModel();
+                JSONObject jsonObject = data.getJSONObject(i);
+                feedModel.setId(jsonObject.getString("id"));
+                feedModel.setColor(jsonObject.getString("color"));
+                feedModel.setLikes(jsonObject.getInt("likes"));
+                feedModel.setLiked_by_user(jsonObject.getBoolean("liked_by_user"));
+                UserModel userModel = new UserModel();
+                JSONObject userJsonObject = jsonObject.getJSONObject("user");
                 userModel.setId(userJsonObject.getString("id"));
                 userModel.setUserName(userJsonObject.getString("username"));
                 userModel.setProfileIamge(userJsonObject.getJSONObject("profile_image").getString("large"));
-feedModel.setUserModel(userModel);
+                feedModel.setUserModel(userModel);
                 feedModels.add(feedModel);
-                start++;
+                newBegin++;
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+        start+=newBegin;
         return feedModels;
     }
 }

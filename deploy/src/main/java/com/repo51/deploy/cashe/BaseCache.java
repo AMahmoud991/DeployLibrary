@@ -10,8 +10,14 @@ import java.util.ArrayList;
 
 public class BaseCache<T> implements Cache<T> {
     private LruCache<String, T> cacheData;
-    private int cachLimit = 20;
+    private int cachLimit=20;
 
+    public BaseCache() {
+    }
+
+    public BaseCache(int cachLimit) {
+        this.cachLimit = cachLimit;
+    }
 
     @Override
     public void setCachLimit(int cachLimit) {
