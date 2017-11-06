@@ -7,9 +7,9 @@ import android.os.Bundle;
 
 import com.repo51.deploy.constants.RequestState;
 import com.repo51.deploy.deploymanager.Deploy;
-import com.repo51.deploy.error.DeployError;
-import com.repo51.deploy.observer.Observable;
-import com.repo51.deploy.observer.RequestStateObserver;
+import com.repo51.deploy.errors.DeployError;
+import com.repo51.deploy.observers.Observable;
+import com.repo51.deploy.observers.RequestStateObserver;
 import com.repo51.deploy.parser.BaseParser;
 
 import java.util.ArrayList;

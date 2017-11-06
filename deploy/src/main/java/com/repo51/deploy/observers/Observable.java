@@ -1,6 +1,6 @@
-package com.repo51.deploy.observer;
+package com.repo51.deploy.observers;
 
-import com.repo51.deploy.error.DeployError;
+import com.repo51.deploy.errors.DeployError;
 
 /**
  * Created by ahmedmahmoud on 11/3/17.

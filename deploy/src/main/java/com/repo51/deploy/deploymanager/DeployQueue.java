@@ -4,7 +4,7 @@ package com.repo51.deploy.deploymanager;
 import android.content.Loader;
 
 import com.repo51.deploy.constants.RequestState;
-import com.repo51.deploy.observer.RequestStateObserver;
+import com.repo51.deploy.observers.RequestStateObserver;
 import com.repo51.deploy.request.Request;
 
 import java.util.HashMap;

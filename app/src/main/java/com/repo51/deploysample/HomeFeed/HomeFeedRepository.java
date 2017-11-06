@@ -4,8 +4,8 @@ import android.app.Activity;
 
 import com.repo51.deploy.constants.MethodType;
 import com.repo51.deploy.deploymanager.Deploy;
-import com.repo51.deploy.error.DeployError;
-import com.repo51.deploy.observer.RequestStateObserver;
+import com.repo51.deploy.errors.DeployError;
+import com.repo51.deploy.observers.RequestStateObserver;
 import com.repo51.deploy.request.Request;
 import com.repo51.deploy.request.RequestBuilder;
 
