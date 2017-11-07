@@ -37,7 +37,7 @@ Request<T> request;
             urlConnection = (HttpURLConnection) uri.openConnection();
             urlConnection.setReadTimeout(15000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);
-            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestMethod(request.getMethod());
 
             int statusCode = urlConnection.getResponseCode();
             if (statusCode != 200) {
