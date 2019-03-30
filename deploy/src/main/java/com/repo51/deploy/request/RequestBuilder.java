@@ -1,7 +1,6 @@
 package com.repo51.deploy.request;
 
 import android.app.Activity;
-import android.app.LoaderManager;
 
 import com.repo51.deploy.parser.BaseParser;
 import com.repo51.deploy.parser.ImageParser;
@@ -47,8 +46,8 @@ public class RequestBuilder {
         this.loaderManager=loaderManager;
         return this;
     }
-    public Request Build() {
-        return new Request(method,url,loaderManager,parser);
+    public com.repo51.deploy.request.Request Build() {
+        return new com.repo51.deploy.request.Request(method,url,loaderManager,parser);
     }
 
 }

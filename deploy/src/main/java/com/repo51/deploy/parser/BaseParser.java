@@ -7,6 +7,5 @@ import java.io.InputStream;
  */
 
 public interface BaseParser<T> {
-
      T parse(InputStream inputStream);
 }

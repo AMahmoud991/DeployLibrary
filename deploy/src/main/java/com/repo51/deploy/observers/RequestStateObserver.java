@@ -8,7 +8,6 @@ import com.repo51.deploy.errors.DeployError;
  */
 
 public interface RequestStateObserver<T> {
-
     void onSuccess(T data);
     void onError(DeployError error);
 }

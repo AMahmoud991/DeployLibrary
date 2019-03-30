@@ -32,7 +32,12 @@ public class HomeFeedRepository implements HomeFeedContract.Repoistory {
 
     @Override
     public void getFeedData(String url) {
-        Request<JSONArray> request = new RequestBuilder().setUrl(url).setMethodType(MethodType.GET).setDefaultJsonArrayParser().setLoaderManager(activity).Build();
+        Request<JSONArray> request = new RequestBuilder()
+                .setUrl(url)
+                .setMethodType(MethodType.GET)
+                .setDefaultJsonArrayParser()
+                .setLoaderManager(activity)
+                .Build();
         request.registerObserver(new RequestStateObserver<JSONArray>() {
             @Override
             public void onSuccess(JSONArray data) {
